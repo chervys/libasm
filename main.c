@@ -6,7 +6,7 @@
 /*   By: chervy <chervy@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:57:21 by chervy            #+#    #+#             */
-/*   Updated: 2025/01/23 12:35:02 by chervy           ###   ########.fr       */
+/*   Updated: 2025/01/23 12:45:54 by chervy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int main(int argc, char **argv)
 {
+    (void) argc;
+    (void) argv;
     printf("Hello World !!!\n");
     return 0;
 }

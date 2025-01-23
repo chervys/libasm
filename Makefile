@@ -6,7 +6,7 @@
 #    By: chervy <chervy@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 10:19:19 by chervy            #+#    #+#              #
-#    Updated: 2025/01/23 12:38:28 by chervy           ###   ########.fr        #
+#    Updated: 2025/01/23 12:44:15 by chervy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-tests:
+test:
 	$(CC) $(CFLAGS) main.c -L. -lasm -o CrashTest
-.PHONY: tests
+.PHONY: test
 
 clean:
 	${RM} $(OBJ)
