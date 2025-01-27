@@ -1,6 +1,6 @@
 section .text
 
-; Déclaration pour le lien (ld)
+; Declaration for the linker (ld)
 global ft_strcpy
 
 ; char *ft_strcpy(char *dst, const char *src);
