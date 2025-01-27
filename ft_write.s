@@ -7,7 +7,7 @@ extern __errno_location
 ; ssize_t ft_write(int fd, const void buf[.count], size_t count);
 
 ; syscall,  rax,    rdi,   rsi,   rdx,   r10,   r8,   r9
-; write,    1,      fd,    buf,   count, 0,     0,
+; write,    1,      fd,    buf,   count, 0,     0,    0
 
 ft_write:
     mov rax, 1              ; rax = 1 (syscall number for write)
@@ -19,7 +19,7 @@ ft_write:
     neg rax                 ; rax = -rax
     push rax                ; save error code on the stack
     call __errno_location   ; get the address of errno and store it in rax
-    pop QWORD [rax]         ; store error code directly in errno
+    pop QWORD [rax]         ; store error code in errno
     mov rax, -1             ; rax = -1
     ret
 .end:
