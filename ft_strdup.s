@@ -9,19 +9,19 @@ extern malloc
 ; ft_strdup,    -,      s,      -,      -,      -,      -,      -
 
 ft_strdup:
-    push rbx            ; save rbx
-    mov rbx, rdi        ; rbx = s
-    call ft_strlen      ; rax = ft_strlen(s)
-    add rax, 1          ; rax = rax + 1
+    push rbx                ; save rbx
+    mov rbx, rdi            ; rbx = s
+    call ft_strlen          ; rax = ft_strlen(s)
+    add rax, 1              ; rax = rax + 1
 
-    mov rdi, rax        ; rdi = sizeof(s) + 1
-    call malloc         ; rax = malloc(sizeof(s) + 1)
+    mov rdi, rax            ; rdi = sizeof(s) + 1
+    call malloc wrt ..plt   ; rax = malloc(sizeof(s) + 1)
     cmp rax, 0
-    je .error           ; if rax == 0 then jump to .alloc_fail
+    je .error               ; if rax == 0 then jump to .alloc_fail
 
-    mov rdi, rax        ; rdi = dst
-    mov rsi, rbx        ; rsi = src
-    push rax            ; save rax => rax = dst
+    mov rdi, rax            ; rdi = dst
+    mov rsi, rbx            ; rsi = src
+    push rax                ; save rax => rax = dst
     jmp .copy
 
 .error:
