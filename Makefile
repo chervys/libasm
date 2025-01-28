@@ -37,6 +37,7 @@ $(NAME): $(OBJ)
 
 test:
 	$(CC) $(CFLAGS) main.c -L. -lasm -o CrashTest
+	./CrashTest
 .PHONY: test
 
 clean:
