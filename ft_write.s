@@ -1,6 +1,4 @@
-section .text               ; Section declaration
-
-; Declaration for the linker (ld)
+section .text
 global ft_write 
 extern __errno_location
 
@@ -10,17 +8,22 @@ extern __errno_location
 ; write,    1,      fd,    buf,   count, 0,     0,    0
 
 ft_write:
-    mov rax, 1              ; rax = 1 (syscall number for write)
+    test rsi, rsi                   ; test if buf is NULL
+    jz .invalid_buffer              ; if buf is NULL jump to .error
+    mov rax, 1                      ; rax = 1 (syscall number for write)
     syscall
-    cmp rax, 0              ; rax == 0
-    jge .end                ; if rax >= 0 jump to .end
-    jmp .error              ; jump to .error
-.error:
-    neg rax                 ; rax = -rax
-    push rax                ; save error code on the stack
-    call __errno_location   ; get the address of errno and store it in rax
-    pop QWORD [rax]         ; store error code in errno
-    mov rax, -1             ; rax = -1
+    cmp rax, 0                      ; rax == 0
+    jl .set_errno                   ; if rax < 0 jump to .set_errno 
     ret
-.end:
-    ret                     ; Return rax
+
+.invalid_buffer:
+    mov rax, -22                    ; rax = -22 (-EINVAL)
+    jmp .set_errno
+
+.set_errno:
+    neg rax                         ; rax = -rax
+    push rax                        ; save error code on the stack
+    call __errno_location wrt ..plt ; get the address of errno and store it in rax
+    pop QWORD [rax]                 ; store error code in errno
+    mov rax, -1                     ; rax = -1
+    ret
