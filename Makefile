@@ -6,7 +6,7 @@
 #    By: chervy <chervy@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 10:19:19 by chervy            #+#    #+#              #
-#    Updated: 2025/01/23 12:44:15 by chervy           ###   ########.fr        #
+#    Updated: 2025/01/29 08:23:57 by chervy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ OBJ  = $(SRC:.s=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
+TMP_FILE = test.txt
+
 all: $(NAME)
 .PHONY: all
 
@@ -36,8 +38,10 @@ $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
 test:
+	@echo "Hello World..." > ${TMP_FILE}
 	$(CC) $(CFLAGS) main.c -L. -lasm -o CrashTest
 	./CrashTest
+	@rm -rf ${TMP_FILE}
 .PHONY: test
 
 clean:
